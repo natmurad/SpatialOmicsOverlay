@@ -1,4 +1,4 @@
-# SpatialOmicsOverlay
+# SpatialOmicsOverlay - Adapted to allow string and special chars in ROI names
 
 ## Overview
 
@@ -9,52 +9,19 @@ the image, and manipulate the image (coloring, orientation, cropping). Output
 figures are ggplot based allowing for easy customization of images to include
 spatial images into data visualization. 
 
-## Download
 
-Download package from NanoString's GeoScriptHub 
-(link pending)
-
-## Installation
-
-### Install the release version from tarball
-``` r
-install.packages("path/to/SpatialOmicsOverlay_0.99.11.tar.gz", 
-                 dependencies = TRUE, repos = NULL)
-```
-
-### Install the development version from GitHub
+### Install the version from THIS REPOSITORY
 ``` r
 if (!requireNamespace("devtools", quietly=TRUE))
     install.packages("devtools")
     
-devtools::install_github("Nanostring-Biostats/SpatialOmicsOverlay", 
-                         build_vignettes = TRUE, ref = "dev")
+devtools::install_github("natmurad/SpatialOmicsOverlay", 
+                         build_vignettes = F)
 ```
-
-## Documentation
-
-To learn how to start using SpatialOmicsOverlay, view documentation for the
-version of this package installed in your system, start R and enter:
-
-``` r
-browseVignettes("SpatialOmicsOverlay")
-```
-
-or download vignette from NanoString website
-(pending)
-
-## Branches
-The release version on GeoScriptHub is the stable version.
-(link pending)
-
-The dev branch on GitHub is under active development and no guarantee 
-is made on usability at any given time.
-<https://github.com/Nanostring-Biostats/SpatialOmicsOverlay>
 
 ## Citation
 Griswold, M.
 SpatialOmicsOverlay: Spatial Overlay for Omic Data From Nanostring GeoMx data. 
-R Package Version 0.99.10. 
 NanoString Technologies Inc.; Seattle, WA 98109, USA. 2021. 
 
 ## License
