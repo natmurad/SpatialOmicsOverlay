@@ -47,25 +47,36 @@ bookendStr <- function(x, bookend = 8){
 #' muBrainLW <- readLabWorksheet(muBrainLW, slideName = "4")
 #' 
 #' @export
+
 readLabWorksheet <- function(lw, slideName){
-    if(!file.exists(lw)){
-        stop("Lab worksheet path is invalid")
-    }
-    
-    startLine <- grep(readLines(lw), pattern = "^Annotations")
-    
-    lw <- read.csv(lw, header = TRUE, sep = "\t", skip = startLine, 
-                     fill = TRUE)
-    lw$ROILabel <- lw$roi
-    
-    lw <- lw[lw$slide.name == slideName,]
-    
-    if(nrow(lw) == 0){
-        stop("No ROIs match given slideName")
-    }
-    
-    return(lw)
+  if(!file.exists(lw)){
+    stop("Lab worksheet path is invalid")
+  }
+  
+  startLine <- grep(readLines(lw), pattern = "^Annotations")
+  
+  temp_data <- read.csv(lw, header = TRUE, sep = "\t", skip = startLine, 
+                        fill = TRUE, nrows = 1)
+  
+  
+  column_names <- colnames(temp_data)
+  col_classes <- ifelse(column_names == "roi", "character", NA)
+  
+  rm(temp_data)
+  
+  lw <- read.csv(lw, header = TRUE, sep = "\t", skip = startLine, 
+                 fill = TRUE, colClasses = col_classes)
+  lw$ROILabel <- lw$roi
+  
+  lw <- lw[lw$slide.name == slideName,]
+  
+  if(nrow(lw) == 0){
+    stop("No ROIs match given slideName")
+  }
+  
+  return(lw)
 }
+
 
 
 #' Download Mouse Brain OME-TIFF from NanoString's Spatial Organ Atlas
